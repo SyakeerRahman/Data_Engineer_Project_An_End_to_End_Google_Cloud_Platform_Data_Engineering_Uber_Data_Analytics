@@ -34,3 +34,9 @@ Data Dictionary - https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_t
 ## Data Model
 
 ![image](https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/542ef557-ff46-4a79-bfc4-61af9716f1d6)
+
+
+## Process
+
+1. Clean the uber_data.csv by splittig the data from flat file and staging it to few dimension table and join back to the fact table. The transformation tools we used is Python in Jupyter Notebook
+   
