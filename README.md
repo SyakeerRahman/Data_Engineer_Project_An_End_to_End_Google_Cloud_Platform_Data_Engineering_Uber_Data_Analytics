@@ -45,6 +45,44 @@ Python Jupyter
 Google Cloud Platform
 1. Create a new bucket cloud storage
 <img width="614" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/1326dc83-d9d2-4c87-99d8-06b78a4d0cfe">
+<img width="460" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/ef2a0654-eeef-4847-8c0f-eb63d377304d">
+
+2. upload uber_data.csv file and open the permission to public. To open permission click the 3 dot at the most right side of the dataset and click edit access. if not enabled go to permission and switch to fine grained and edit access agai. now add entry and open to public
+<img width="565" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/cd02ca26-17b2-4682-8fa5-4ff5950b3f71">
+<img width="403" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/f7d0401d-8a5a-4a93-a290-a28e3e56c2a9">
+<img width="565" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/73343946-323a-4512-8fb4-b1e377660b62">
 
 
-   
+3. Setup VM. Open Compute Engine and create instances
+<img width="496" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/2f5d15ea-1ab5-42e3-8882-7a62b4e020d7">
+
+``
+Name: unique
+Region Zone: nearest to Malaysia
+Series: E2
+Machine Type: standard, vcpu:4, 16GB Memory
+Firewall: Allow HTTP & HTTPS traffic
+`` click create
+
+4. Once complete, click on the SSH beside the instance and the VM will pop up, we need to setup a few things first before moving on. write the command below
+<img width="416" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/2239e214-c48c-460d-9178-30cb043b1a13">
+
+``
+Install Python and pip 
+sudo apt-get update
+sudo apt-get install python3-distutils
+sudo apt-get install python3-apt
+sudo apt-get install wget
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py
+Install Mage
+sudo pip3 install mage-ai
+Install Pandas
+sudo pip3 install pandas
+Install Google Cloud Library
+sudo pip3 install google-cloud
+sudo pip3 install google-cloud-bigquery
+``
+
+
+
