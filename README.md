@@ -76,7 +76,6 @@ sudo apt-get install wget
 wget https://bootstrap.pypa.io/get-pip.py
 sudo python3 get-pip.py
 Install Mage
-sudo pip3 install mage-ai
 Install Pandas
 sudo pip3 install pandas
 Install Google Cloud Library
@@ -84,5 +83,26 @@ sudo pip3 install google-cloud
 sudo pip3 install google-cloud-bigquery
 ``
 
+5. Click on the name (nic0), click on firewall and create firewall rule and fill the details as below
+<img width="430" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/43cb9399-e88a-4f54-a1f9-20c748b456e1">
+<img width="446" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/af328260-cf07-4322-94cc-82e91987737b">
+<img width="254" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/299ac00d-49df-45f8-bae6-ead1a8ed94d4">
+<img width="308" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/9ceb1f73-859e-4c27-abbb-0a86d32a6d51">
 
+
+6. open mage ai using the (external ip: port) and click data loader and copy the url from GCP instances and paste inside the code. Then click data transformer and insert the code we have written in the Jupyter notebook because we will now do transformation to the data and save it in JSON format
+<img width="424" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/cab277d1-cf30-4ce8-b104-064c8c3f7d54">
+<img width="467" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/7b83f234-e0af-43cf-9dc2-1268382f9343">
+
+7. Now we are going to load the data inside Bigquery, click the data exporter and click python>bigquery. Now we need credentials from Bigquery so go to GCP and search API & Service> credentials > create credentials > service account > fill details, give Bigquery Admin access and create > go back to the service account > add keys > create new key > JSON.
+<img width="398" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/e33cefe0-8179-4bd3-<img width="368" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/732274cc-3061-44ca-bc23-9885aa7eafaf">
+a5e2-f76d46add4e6">
+<img width="272" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/fb43cf8f-5d88-457e-b802-3cd386bb5b8e">
+<img width="377" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/7c914095-a351-468d-8d6e-1eac1c4ac191">
+
+8. Open the JSON credentials file and now copy the details and paste it in to the Mage io_config.yaml. After finish copy paste the details and go to Google BigQuery and create a new dataset. Copy the dataset name and paste it inside the exporter code.
+<img width="385" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/25e33ddf-8f94-4f00-b5a2-7249518a5722">
+
+9. sudo pip3 install google-cloud, sudo pip3 instal google-cloud-bigquery. Now run the pipeline and see if it succeed or not
+<img width="395" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/ada833d9-340e-4eb8-a7e0-ce2baa8b04c0">
 
