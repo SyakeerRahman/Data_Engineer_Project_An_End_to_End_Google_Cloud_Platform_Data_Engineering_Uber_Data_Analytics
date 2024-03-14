@@ -37,10 +37,12 @@ Data Dictionary - https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_t
 ![image](https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/542ef557-ff46-4a79-bfc4-61af9716f1d6)
 
 
-## Process
+### PYTHON CREATING FACT AND DIM TABLE step
 
 Python Jupyter
 1. Clean the uber_data.csv by splittig the data from flat file and staging it to few dimension table and join back to the fact table. The transformation tools we used is Python in Jupyter Notebook
+
+### GCP STORAGE Step (to load uber_data.csv so that can be extracted to mage)
 
 Google Cloud Platform
 1. Create a new bucket cloud storage
@@ -52,6 +54,7 @@ Google Cloud Platform
 <img width="403" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/f7d0401d-8a5a-4a93-a290-a28e3e56c2a9">
 <img width="565" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/73343946-323a-4512-8fb4-b1e377660b62">
 
+### GCP COMPUTE ENGINE Step (to setup MAGE ai)
 
 3. Setup VM. Open Compute Engine and create instances
 <img width="496" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/2f5d15ea-1ab5-42e3-8882-7a62b4e020d7">
@@ -89,6 +92,7 @@ sudo pip3 install google-cloud-bigquery
 <img width="254" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/299ac00d-49df-45f8-bae6-ead1a8ed94d4">
 <img width="308" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/9ceb1f73-859e-4c27-abbb-0a86d32a6d51">
 
+### MAGE AI step (ETL)
 
 6. open mage ai using the (external ip: port) and click data loader and copy the url from GCP instances and paste inside the code. Then click data transformer and insert the code we have written in the Jupyter notebook because we will now do transformation to the data and save it in JSON format
 <img width="424" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/cab277d1-cf30-4ce8-b104-064c8c3f7d54">
@@ -106,3 +110,44 @@ a5e2-f76d46add4e6">
 9. sudo pip3 install google-cloud, sudo pip3 instal google-cloud-bigquery. Now run the pipeline and see if it succeed or not
 <img width="395" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/ada833d9-340e-4eb8-a7e0-ce2baa8b04c0">
 
+### BIGQUERY step (join all table together into 1 table for easier query)
+
+10. Now if the process succeed, the should be tables in the database in Bigquery. Now we are going to create a new table that combine all of this fact table and dimension table in a single table. Run the query below to create and join all the table.
+<img width="111" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/11f26c38-f72e-4fa7-a2b6-d68829ef924a">
+<img width="478" alt="image" src="https://github.com/SyakeerRahman/Data_Engineer_Project_An_End_to_End_Google_Cloud_Platform_Data_Engineering_Uber_Data_Analytics/assets/105381652/93f569e3-7115-4ec4-9337-7767c30ab0ce">
+
+``ruby
+CREATE OR REPLACE TABLE `data.uber_data_engineering_yt.tbl_analytics` AS (
+SELECT 
+f.trip_id,
+f.VendorID,
+d.tpep_pickup_datetime,
+d.tpep_dropoff_datetime,
+p.passenger_count,
+t.trip_distance,
+r.rate_code_name,
+pick.pickup_latitude,
+pick.pickup_longitude,
+drop.dropoff_latitude,
+drop.dropoff_longitude,
+pay.payment_type_name,
+f.fare_amount,
+f.extra,
+f.mta_tax,
+f.tip_amount,
+f.tolls_amount,
+f.improvement_surcharge,
+f.total_amount
+FROM 
+`data.uber_data_engineering_yt.fact_table` f
+JOIN `data.uber_data_engineering_yt.datetime_dim` d  ON f.datetime_id=d.datetime_id
+JOIN `data.uber_data_engineering_yt.passenger_count_dim` p  ON p.passenger_count_id=f.passenger_count_id  
+JOIN `data.uber_data_engineering_yt.trip_distance_dim` t  ON t.trip_distance_id=f.trip_distance_id  
+JOIN `data.uber_data_engineering_yt.rate_code_dim` r ON r.rate_code_id=f.rate_code_id  
+JOIN `data.uber_data_engineering_yt.pickup_location_dim` pick ON pick.pickup_location_id=f.pickup_location_id
+JOIN `data.uber_data_engineering_yt.dropoff_location_dim` drop ON drop.dropoff_location_id=f.dropoff_location_id
+JOIN `data.uber_data_engineering_yt.payment_type_dim` pay ON pay.payment_type_id=f.payment_type_id)
+;
+``
+
+### LOOKER step (data visualization)
